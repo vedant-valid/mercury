@@ -51,7 +51,7 @@ export default function Header({ onLoginClick }) {
         {/* Left: Logo */}
         <div className="left-slot">
           <Link to="/" aria-label="Go to home" className="logo-container">
-            <img src="/logo.svg" alt="MatchUp logo" className="logo" />
+            <img src="Saturn_01.svg" alt="mercury logo" className="logo" />
           </Link>
         </div>
 

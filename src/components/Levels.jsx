@@ -20,7 +20,7 @@ function Levels({ handleLevelClick }) {
 
   return (
     <div className="levels-container">
-      <h2 className="levels-heading">Choose Your Challenge</h2>
+      <h2 className="levels-heading">Choose Your Troubles</h2>
 
       {/* Desktop scroll controls - only visible on desktop */}
       <div className="level-scroll-controls">
