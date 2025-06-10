@@ -51,7 +51,8 @@ export default function Header({ onLoginClick }) {
         {/* Left: Logo */}
         <div className="left-slot">
           <Link to="/" aria-label="Go to home" className="logo-container">
-            <img src="Saturn_01.svg" alt="mercury logo" className="logo" />
+          <span className="welcome-text">Mercury</span>
+          <img src="planets.svg" alt="mercury logo" className="logo" />
           </Link>
         </div>
 

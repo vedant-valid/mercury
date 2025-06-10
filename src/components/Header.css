@@ -63,7 +63,7 @@
   .user-name {
     font-weight: 600;
     color: #e2e2e2;
-    background: linear-gradient(90deg, #7c3aed 0%, #6d28d9 100%);
+    background: linear-gradient(90deg, #2378a9 0%, #2378a9 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -100,7 +100,7 @@
   .leaderboard-link {
     border: none;
     background: none;
-    color: #a78bfa;
+    color: #fcfaff;
     font-weight: 600;
   }
   
