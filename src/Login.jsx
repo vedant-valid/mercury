@@ -126,7 +126,7 @@ export default function AuthPage() {
 
 
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-white">Welcome to Mercury</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-white">Welcome to Mercury ☿️</h1>
           <p className="mt-2 text-slate-400">Sign in to your account or create a new one</p>
         </div>
 
