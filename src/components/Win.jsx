@@ -47,7 +47,7 @@ function Win({ handleGameRestart, handleLevelChange, stats }) {
       <div className="win-container-header">
         <img src="/graphics/level-win.gif" className="celebration-gif" width={150} height={150} alt="Celebration gif" />
         <div className="text-center">
-          <img src="/graphics/trophy.svg" className="trophy-icon" width={60} height={60} alt="Trophy icon" />
+          <img src="/graphics/capricorn.svg" className="trophy-icon" width={60} height={60} alt="Trophy icon" />
           <div>You win!</div>
           <div className="d-flex gap-10 align-items-center justify-content-center">
             <StatsCard label="Moves" value={stats.moves} />
