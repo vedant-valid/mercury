@@ -6,18 +6,19 @@ function Footer() {
           &copy; {new Date().getFullYear()} All rights reserved  ||  Made by Madne 🪐
           {' '}|{' '}
           <a 
-            href="https://www.linkedin.com/in/vedantmadne/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            style={{ color: '#0a66c2', textDecoration: 'none', marginRight: '10px' }}
-          >
-            LinkedIn 
-          </a>
-          <a 
-            href="https://www.instagram.com/vedant_valid/?next=%2F" 
+            href="https://www.linkedin.com/in/vedant-madne/" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ color: '#0a66c2', textDecoration: 'none' }}
+          >
+            LinkedIn
+          </a>
+          {' '}|{' '}
+          <a 
+            href="https://www.instagram.com/vedantmadne" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#e4405f', textDecoration: 'none' }}
           >
             Instagram
           </a>
