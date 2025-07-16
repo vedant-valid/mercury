@@ -119,9 +119,11 @@ export default function AuthPage() {
 <div
   id="Globe-venta"
   className="flex min-h-screen items-center justify-center p-4"
-  style={{ backgroundColor: "#4f0203" }}
+  style={{ backgroundColor: "#090713" }}
 >
       <div className="w-full max-w-md">
+        
+        
 
 
 
