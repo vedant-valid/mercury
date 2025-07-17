@@ -119,7 +119,12 @@ export default function AuthPage() {
 <div
   id="Globe-venta"
   className="flex min-h-screen items-center justify-center p-4"
-  style={{ backgroundColor: "#090713" }}
+  style={{
+    backgroundImage: 'url("/robo.png")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
 >
       <div className="w-full max-w-md">
         
@@ -128,8 +133,8 @@ export default function AuthPage() {
 
 
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-white">Welcome to Mercury ☿️</h1>
-          <p className="mt-2 text-slate-400">Sign in to your account or create a new one</p>
+          <h1 className="text-4xl font-bold tracking-tight text-white">Welcome to Mercury ☿️</h1>
+          <p className="mt-2 bg-[#0f172a] text-slate-400 p-4 rounded-lg">Sign in to your account or create a new one</p>
         </div>
 
         <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab} className="w-full">

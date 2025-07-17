@@ -189,22 +189,45 @@ function Game() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/leaderboard" element={
-        <ProtectedRoute>
-          <Layout>
-            <Leaderboard />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      <Route path="/" element={
-        <ProtectedRoute>
-          <Game />
-        </ProtectedRoute>
-      } />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+    {/* Background Video */}
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="video-bg"
+    >
+      <source src="space.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* App Routes */}
+    <div className="relative z-10 min-h-screen">
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/leaderboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Leaderboard />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Game />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
+  </>
   );
 }
 

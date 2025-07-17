@@ -621,11 +621,18 @@ main {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/a72c2696-c01b-4cfa-9ba5-b2ea8013ab0a/dbwpyse-4200590f-f5fe-4217-91f7-547749142e84.png/v1/fill/w_1192,h_670,q_70,strp/4k_space_wallpaper___flat_design_minimal_by_npovoa_dbwpyse-pre.jpg'); /* <-- Replace with your actual image path */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: black; /* Fallback in case video fails */
   color: white;
+  overflow: hidden; /* Optional: Prevent scrollbars */
+}
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .app {
