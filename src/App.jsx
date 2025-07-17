@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './layout';
-import GameStats from './components/GameStats';
-import GameBoard from './components/GameBoard';
-import GameFooter from './components/GameFooter';
-import Levels from './components/Levels';
-import Win from './components/Win';
-import Leaderboard from './components/Leaderboard';
-import ProtectedRoute from './components/ProtectedRoute';
-import Login from './Login';
-import { setUpCards } from './utils';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./layout";
+import GameStats from "./components/GameStats";
+import GameBoard from "./components/GameBoard";
+import GameFooter from "./components/GameFooter";
+import Levels from "./components/Levels";
+import Win from "./components/Win";
+import Leaderboard from "./components/Leaderboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./Login";
+import { setUpCards } from "./utils";
+import About from "./components/About";
+import "./App.css";
 
 function Game() {
   // ----------------------------- STATE -----------------------------
@@ -47,7 +48,9 @@ function Game() {
   const handleLevelChange = () => {
     let confirmed = true;
     if (!endedAt && moves > 0) {
-      confirmed = window.confirm('Game in progress, are you sure you want to leave?');
+      confirmed = window.confirm(
+        "Game in progress, are you sure you want to leave?"
+      );
     }
 
     if (confirmed) {
@@ -59,7 +62,7 @@ function Game() {
   const handleGameRestart = () => {
     let confirmed = true;
     if (!endedAt && moves > 0) {
-      confirmed = window.confirm('Are you sure you want to restart the game?');
+      confirmed = window.confirm("Are you sure you want to restart the game?");
     }
     if (confirmed) {
       resetStats();
@@ -70,13 +73,17 @@ function Game() {
   // ----------------------------- GAME HANDLER FUNCTIONS -----------------------------
 
   // Step 1 (Flip cards on click)
-  const handleCardClick = card => {
+  const handleCardClick = (card) => {
     if (card.flipped || card.matched) return;
 
-    setCards(prev =>
-      prev.map(c => (c.id === card.id ? { ...card, flipped: true, flippedCount: c.flippedCount + 1 } : c)),
+    setCards((prev) =>
+      prev.map((c) =>
+        c.id === card.id
+          ? { ...card, flipped: true, flippedCount: c.flippedCount + 1 }
+          : c
+      )
     );
-    setFlippedCards(prev => [...prev, card]);
+    setFlippedCards((prev) => [...prev, card]);
   };
 
   // Step 2 (Close previously opened cards when the third card is clicked, if they are still open)
@@ -87,7 +94,13 @@ function Game() {
     const lastOpenCard = flippedCards[flippedCards.length - 1];
 
     setFlippedCards([lastOpenCard]);
-    setCards(cards.map(c => (c.id !== lastOpenCard.id ? { ...c, flipped: c.matched ? c.flipped : false } : c)));
+    setCards(
+      cards.map((c) =>
+        c.id !== lastOpenCard.id
+          ? { ...c, flipped: c.matched ? c.flipped : false }
+          : c
+      )
+    );
   };
 
   // Step 3 (Check if opened cards are matching and update stats)
@@ -95,20 +108,24 @@ function Game() {
     if (flippedCards.length === 2) {
       const [card1, card2] = flippedCards;
       // Increment moves
-      setMoves(prev => prev + 1);
+      setMoves((prev) => prev + 1);
 
       if (card1.illusPathName === card2.illusPathName) {
-        setCards(prev => prev.map(c => (c.id === card1.id || c.id === card2.id ? { ...c, matched: true } : c)));
+        setCards((prev) =>
+          prev.map((c) =>
+            c.id === card1.id || c.id === card2.id ? { ...c, matched: true } : c
+          )
+        );
 
         // Increment matched cards number
-        setMatchedCards(prev => prev + 1);
+        setMatchedCards((prev) => prev + 1);
 
         // Play matching cards sound
         setPlaySuccessSound(true);
       } else {
         if (card1.flippedCount > 0 && card2.flippedCount > 0) {
           // Increment misses
-          setMisses(prev => prev + 1);
+          setMisses((prev) => prev + 1);
         }
 
         // Flip cards back after 1 second
@@ -127,7 +144,11 @@ function Game() {
     if (flippedCards.length === 2) {
       const [card1, card2] = flippedCards;
 
-      setCards(prev => prev.map(c => (c.id === card1.id || c.id === card2.id ? { ...c, flipped: false } : c)));
+      setCards((prev) =>
+        prev.map((c) =>
+          c.id === card1.id || c.id === card2.id ? { ...c, flipped: false } : c
+        )
+      );
       setFlippedCards([]);
     }
   };
@@ -149,11 +170,11 @@ function Game() {
 
   useEffect(() => {
     if (cards.length) {
-      const unmatchedCards = cards.filter(c => !c.matched);
+      const unmatchedCards = cards.filter((c) => !c.matched);
       if (!unmatchedCards.length) {
         setTimeout(() => {
           setEndedAt(new Date().toISOString());
-          new Audio('/audio/level-win.mp3').play();
+          new Audio("/audio/level-win.mp3").play();
         }, 1000);
       }
     }
@@ -161,7 +182,7 @@ function Game() {
 
   useEffect(() => {
     if (playSuccessSound) {
-      new Audio('/audio/success-sound.mp3').play();
+      new Audio("/audio/success-sound.mp3").play();
       setPlaySuccessSound(false);
     }
   }, [playSuccessSound]);
@@ -172,16 +193,39 @@ function Game() {
         <Win
           handleGameRestart={handleGameRestart}
           handleLevelChange={handleLevelChange}
-          stats={{ selectedLevel, moves, misses, matchedCards, startedAt, endedAt }}
+          stats={{
+            selectedLevel,
+            moves,
+            misses,
+            matchedCards,
+            startedAt,
+            endedAt,
+          }}
         />
       ) : startedAt ? (
         <div className="game-grid">
-          <GameStats stats={{ selectedLevel, moves, misses, matchedCards, startedAt, endedAt }} />
-          <GameBoard cards={cards} handleCardClick={handleCardClick} grid={selectedLevel.grid} />
-          <GameFooter handleLevelChange={handleLevelChange} handleGameRestart={handleGameRestart} />
+          <GameStats
+            stats={{
+              selectedLevel,
+              moves,
+              misses,
+              matchedCards,
+              startedAt,
+              endedAt,
+            }}
+          />
+          <GameBoard
+            cards={cards}
+            handleCardClick={handleCardClick}
+            grid={selectedLevel.grid}
+          />
+          <GameFooter
+            handleLevelChange={handleLevelChange}
+            handleGameRestart={handleGameRestart}
+          />
         </div>
       ) : (
-        <Levels handleLevelClick={l => setSelectedLevel(l)} />
+        <Levels handleLevelClick={(l) => setSelectedLevel(l)} />
       )}
     </Layout>
   );
@@ -190,44 +234,53 @@ function Game() {
 function App() {
   return (
     <>
-    {/* Background Video */}
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="video-bg"
-    >
-      <source src="space.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+      {/* Background Video */}
+      <video autoPlay muted loop playsInline className="video-bg">
+        <source src="space.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-    {/* App Routes */}
-    <div className="relative z-10 min-h-screen">
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/leaderboard"
-          element={
-            <ProtectedRoute>
-              <Layout>
-                <Leaderboard />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Game />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </div>
-  </>
+      {/* App Routes */}
+      <div className="relative z-10 min-h-screen">
+        <div className="relative z-10 min-h-screen">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+
+            <Route
+              path="/leaderboard"
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <Leaderboard />
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Game />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* ✅ Public About Page with Layout */}
+            <Route
+              path="/about"
+              element={
+                <Layout>
+                  <About />
+                </Layout>
+              }
+            />
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </div>
+    </>
   );
 }
 

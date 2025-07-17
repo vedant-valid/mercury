@@ -76,6 +76,9 @@ export default function Header({ onLoginClick }) {
               <Link to="/leaderboard" className="leaderboard-link">
                 <Trophy className="leaderboard-icon" />
                 <span>Leaderboard</span>
+              <Link to="/about" className="leaderboard-link">
+                <span>About</span>
+              </Link>
               </Link>
             )}
             {currentUser ? (
@@ -88,8 +91,6 @@ export default function Header({ onLoginClick }) {
                 Login / Signup
               </button>
             )}
-
-            {/* 🌙 Dark Mode Toggle — add here inside desktop-actions */}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="theme-toggle-button"
@@ -156,7 +157,15 @@ export default function Header({ onLoginClick }) {
               <Trophy className="mobile-nav-icon" />
               <span>Leaderboard</span>
             </Link>
+            <Link
+              to="/about"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>About</span>
+            </Link>
           </nav>
+
           {/* 🌗 Mobile Theme Toggle Button */}
           <button
             onClick={() => {
